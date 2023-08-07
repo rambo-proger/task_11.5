@@ -1,0 +1,17 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Clone Git Repository') {
+      steps {
+        git url: 'https://github.com/rambo-proger/task_11.5.git', branch: 'main'
+      }
+    }
+    stage('Execute SQL File') {
+      steps {
+        sh 'mysql -h mysql-rfam-public.ebi.ac.uk -u rfamro -d Rfam all_rats_RNA.sql'
+      }
+    }
+  }
+}
+
